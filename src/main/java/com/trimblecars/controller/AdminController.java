@@ -2,8 +2,9 @@ package com.trimblecars.controller;
 
 
 import com.trimblecars.model.Car;
+
 import com.trimblecars.model.Lease;
-import com.trimblecars.model.User;
+import com.trimblecars.model.Users;
 import com.trimblecars.services.CarService;
 import com.trimblecars.services.LeaseService;
 import com.trimblecars.services.UserService;
@@ -30,7 +31,7 @@ public class AdminController {
 
     // Get all users
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<Users>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 

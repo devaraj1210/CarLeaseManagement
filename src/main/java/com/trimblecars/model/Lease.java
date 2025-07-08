@@ -19,11 +19,11 @@ public class Lease {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private User customer;
+    private Users customer;
 
     public Lease() {}
 
-    public Lease(LocalDate startDate, LocalDate endDate, Car car, User customer) {
+    public Lease(LocalDate startDate, LocalDate endDate, Car car, Users customer) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.car = car;
@@ -42,6 +42,6 @@ public class Lease {
     public Car getCar() { return car; }
     public void setCar(Car car) { this.car = car; }
 
-    public User getCustomer() { return customer; }
-    public void setCustomer(User customer) { this.customer = customer; }
+    public Users getCustomer() { return customer; }
+    public void setCustomer(Users customer) { this.customer = customer; }
 }

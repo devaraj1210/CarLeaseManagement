@@ -15,11 +15,11 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    private User owner;
+    private Users owner;
 
     public Car() {}
 
-    public Car(String model, String variant, String status, User owner) {
+    public Car(String model, String variant, String status, Users owner) {
         this.model = model;
         this.variant = variant;
         this.status = status;
@@ -38,6 +38,6 @@ public class Car {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public User getOwner() { return owner; }
-    public void setOwner(User owner) { this.owner = owner; }
+    public Users getOwner() { return owner; }
+    public void setOwner(Users owner) { this.owner = owner; }
 }

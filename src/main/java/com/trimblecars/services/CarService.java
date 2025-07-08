@@ -2,7 +2,7 @@ package com.trimblecars.services;
 
 import com.trimblecars.exception.ResourceNotFoundException;
 import com.trimblecars.model.Car;
-import com.trimblecars.model.User;
+import com.trimblecars.model.Users;
 import com.trimblecars.repository.CarRepository;
 import com.trimblecars.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class CarService {
 
     // Register a new car
     public Car registerCar(Car car, Long ownerId) {
-        Optional<User> ownerOpt = userRepository.findById(ownerId);
+        Optional<Users> ownerOpt = userRepository.findById(ownerId);
         if (ownerOpt.isEmpty()) {
             throw new ResourceNotFoundException("Car owner not found with ID: " + ownerId);
         }

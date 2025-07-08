@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,9 @@ public class User {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Lease> leases;
 
-    public User() {}
+    public Users() {}
 
-    public User(String name, String email, String role) {
+    public Users(String name, String email, String role) {
         this.name = name;
         this.email = email;
         this.role = role;

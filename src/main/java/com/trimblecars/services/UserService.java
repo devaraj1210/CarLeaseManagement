@@ -1,7 +1,7 @@
 package com.trimblecars.services;
 
 
-import com.trimblecars.model.User;
+import com.trimblecars.model.Users;
 import com.trimblecars.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,17 +20,17 @@ public class UserService {
     }
 
     // Register a new user
-    public User registerUser(User user) {
+    public Users registerUser(Users user) {
         return userRepository.save(user);
     }
 
     // Get user by ID
-    public Optional<User> getUserById(Long id) {
+    public Optional<Users> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
     // Get all users
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return userRepository.findAll();
     }
 }

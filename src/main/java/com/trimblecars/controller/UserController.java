@@ -1,7 +1,7 @@
 package com.trimblecars.controller;
 
 
-import com.trimblecars.model.User;
+import com.trimblecars.model.Users;
 import com.trimblecars.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,22 +23,22 @@ public class UserController {
 
     // Register a new user
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User savedUser = userService.registerUser(user);
+    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
+        Users savedUser = userService.registerUser(user);
         return ResponseEntity.ok(savedUser);
     }
 
     // Get a user by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = userService.getUserById(id);
+    public ResponseEntity<Users> getUserById(@PathVariable Long id) {
+        Optional<Users> user = userService.getUserById(id);
         return user.map(ResponseEntity::ok)
                    .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Get all users
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<Users>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 }

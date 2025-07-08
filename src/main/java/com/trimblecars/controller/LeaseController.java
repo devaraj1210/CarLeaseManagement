@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 @RestController
 @RequestMapping("/api/leases")
@@ -45,4 +49,26 @@ public class LeaseController {
     public ResponseEntity<List<Lease>> getAllLeases() {
         return ResponseEntity.ok(leaseService.getAllLeases());
     }
+
+
+@GetMapping("/export/customer/{customerId}")
+public void exportLeaseHistory(@PathVariable Long customerId, HttpServletResponse response) throws IOException {
+    List<Lease> leases = leaseService.getLeasesByCustomerId(customerId);
+
+    response.setContentType("text/csv");
+    response.setHeader("Content-Disposition", "attachment; filename=lease-history.csv");
+
+    PrintWriter writer = response.getWriter();
+    writer.println("Lease ID, Car Model, Start Date, End Date");
+
+    for (Lease lease : leases) {
+        writer.printf("%d, %s, %s, %s\n",
+                lease.getId(),
+                lease.getCar().getModel(),
+                lease.getStartDate(),
+                lease.getEndDate() == null ? "Ongoing" : lease.getEndDate().toString());
+    }
+
+    writer.flush();
+}
 }

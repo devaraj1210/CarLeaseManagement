@@ -3,7 +3,7 @@ package com.trimblecars.services;
 import com.trimblecars.exception.ResourceNotFoundException;
 import com.trimblecars.model.Car;
 import com.trimblecars.model.Lease;
-import com.trimblecars.model.User;
+import com.trimblecars.model.Users;
 import com.trimblecars.repository.CarRepository;
 import com.trimblecars.repository.LeaseRepository;
 import com.trimblecars.repository.UserRepository;
@@ -29,7 +29,7 @@ public class LeaseService {
 
     // Start a lease
     public Lease startLease(Long customerId, Long carId) {
-    	User customer = userRepository.findById(customerId)
+    	Users customer = userRepository.findById(customerId)
     	        .orElseThrow(() -> new ResourceNotFoundException("Customer not found with ID: " + customerId));
 
     	Car car = carRepository.findById(carId)
@@ -76,7 +76,7 @@ public class LeaseService {
 
     // View leases for a user
     public List<Lease> getLeasesByCustomerId(Long customerId) {
-        User customer = userRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found"));
+        Users customer = userRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found"));
         return leaseRepository.findByCustomer(customer);
     }
 
